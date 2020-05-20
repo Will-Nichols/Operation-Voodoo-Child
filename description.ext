@@ -1,0 +1,50 @@
+Author="Nichols";
+OnLoadName = "Operation Voodoo Child";
+OnLoadMission = "Southwestern region of Angola near the Atlantic Ocean";
+overviewPicture = "SEAL.jpg";
+
+enableDebugConsole = 1;
+cba_settings_hasSettingsFile = 1;
+
+class Header
+{
+	gameType = COOP; // Game type, see 'class' columns in the table below
+	minPlayers = 4; //min # of players the mission supports
+	maxPlayers = 80; //max # of players the mission supports
+};
+
+respawn = 3;
+respawndelay = 45;
+respawnOnStart = -1;
+respawnDialog = 0;
+DisabledAI = true;
+
+class CfgFunctions 
+{
+	#include "vcom\cfgFunctions.hpp"
+};
+
+class Extended_PreInit_EventHandlers {
+	class VCM_CBASettings {
+		init = "call VCM_fnc_CBA_Settings";
+	};
+};
+class CfgRemoteExec
+{
+	// List of script functions allowed to be sent from client via remoteExec
+	class Functions
+	{
+		mode = 2;
+		jip = 1;		
+		
+		class vcm_serverask { allowedTargets = 0;jip = 1; };
+		class VCM_PublicScript { allowedTargets = 0;jip = 1; };
+		class BIS_fnc_debugConsoleExec { allowedTargets = 0;jip = 1; };
+		class SpawnScript { allowedTargets = 0;jip = 1; };
+		class enableSimulationGlobal { allowedTargets = 0;jip = 1; };
+		class VCM_fnc_KnowAbout { allowedTargets = 0;jip = 1; };
+		
+	};
+	
+	
+};
